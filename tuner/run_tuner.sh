@@ -42,7 +42,7 @@ printf "# Parameters: %s\n" "${#@}"
 # ps -fA | grep tuner_train | awk '{print $2}' | xargs kill -9 $1
 
 # launch master process
-python $script_dir/tuner_train.py --multiobj $multiobj --cfgSearchFile $cfg --n_workers $workers --n_iterations $iterations --min_points_in_model $m_points --log_dir $log_dir/$auxbase --run_args aux_input=$aux &
+python $script_dir/tuner_train.py --multiobj $multiobj --cfgSearchFile $cfg --n_workers $workers --n_iterations $iterations --min_points_in_model $m_points --num_pareto 5 --log_dir $log_dir/$auxbase --run_args aux_input=$aux &
 
 # launch worker processes
 for i in $(seq $workers); do

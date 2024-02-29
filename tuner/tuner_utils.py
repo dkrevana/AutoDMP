@@ -80,7 +80,7 @@ def dp_to_def(def_file, pl_file, macro_file, target_filename=""):
             line = line.rstrip("\n").split(" ")
             if len(line) >= 4:
                 # x, y, orientation
-                pl_dict[line[0]] = [int(line[1]), int(line[2]), line[4]]
+                pl_dict[line[0]] = [int(float(line[1])), int(float(line[2])), line[4]]
 
     def_lines = []
     with open(def_file, "r") as f:

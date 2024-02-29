@@ -10,19 +10,19 @@ ARG ssh_pub_key
 # if docker service does not support --squash, enable docker experimental feature as shown in https://stackoverflow.com/questions/44346322/how-to-run-docker-with-experimental-functions-on-ubuntu-16-04
 
 
-RUN echo "$ssh_prv_key"
-RUN echo "$ssh_pub_key"
-RUN mkdir /root/.ssh && \
-    echo "$ssh_prv_key" > /root/.ssh/id_ed25519 && \
-    echo "$ssh_pub_key" > /root/.ssh/id_ed25519.pub && \
-    chmod 600 /root/.ssh/id_ed25519 && \
-    chmod 600 /root/.ssh/id_ed25519.pub && \
-    ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
+# RUN echo "$ssh_prv_key"
+# RUN echo "$ssh_pub_key"
+# RUN mkdir /root/.ssh && \
+#     echo "$ssh_prv_key" > /root/.ssh/id_ed25519 && \
+#     echo "$ssh_pub_key" > /root/.ssh/id_ed25519.pub && \
+#     chmod 600 /root/.ssh/id_ed25519 && \
+#     chmod 600 /root/.ssh/id_ed25519.pub && \
+#     ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 
-RUN git clone --recursive git@github.com:nvlabs/AutoDMP /AutoDMP
+# RUN git clone --recursive git@github.com:nvlabs/AutoDMP /AutoDMP
 
-RUN rm /root/.ssh/id_ed25519 && \
-    rm /root/.ssh/id_ed25519.pub
+# RUN rm /root/.ssh/id_ed25519 && \
+#     rm /root/.ssh/id_ed25519.pub
 
 # update torch
 RUN pip install --upgrade pip 
@@ -67,7 +67,7 @@ RUN pip install \
         pyDOE2>=1.3.0 \
         shap>=0.41.0 \
         Pyro4>=4.82 \
-        ConfigSpace>=0.6.0 \
+        ConfigSpace==0.6.1 \
         statsmodels>=0.13.2 \
         xgboost>=1.5.1 
 
